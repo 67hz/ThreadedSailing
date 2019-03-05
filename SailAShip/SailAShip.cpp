@@ -1,7 +1,7 @@
 /*
-	This could be improved by creating a task queue to avoid overlapping requests (e.g. calling clean while a clean task is processing).
-	It might also be cleaner to create a Captain class with a delegator method to issue instructions based on a given int param. There would be a downside
-	to that in Captain class needing to reference member functions of the CleaningCrew and EngineCrew task.
+	This could use a task queue to avoid overlapping requests (e.g. calling clean while a clean task is processing).
+	Would be cleaner to create a Captain class with a delegator() to issue instructions based on a given int param to avoid the inline switch, although it would couple the
+	Captain class to the worker classes.
 */
 #include "pch.h"
 #include <iostream>
@@ -69,7 +69,7 @@ int main()
 				engineCrew.accelerate();
 			});
 			thread_guard acc_tg(accelerate_thread);
-			// @QUESTION: is it necessary to call join() since thread_guard does it during dtor?
+			// @TODO: necessary to call join() since thread_guard does it during dtor?
 			accelerate_thread.join();
 			break;
 		}
