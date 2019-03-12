@@ -85,7 +85,6 @@ public:
 			{
 				std::cout << _t.get_id() << " is joinable" << std::endl;
 				std::cout << std::this_thread::get_id() << " is joinable" << std::endl;
-				std::this_thread::yield();
 				_t = std::thread(&CleaningCrew::clean, this);
 				_t.detach();
 			}
